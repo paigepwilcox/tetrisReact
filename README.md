@@ -1,2 +1,2 @@
-# tetrisReact
+# Tetris
 Tetris game in React
