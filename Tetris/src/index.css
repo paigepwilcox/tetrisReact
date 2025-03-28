@@ -1,0 +1,60 @@
+h1 {
+  text-align: center;
+}
+
+.board {
+  border: 2px solid black;
+  user-select: none;
+  margin: auto;
+  width: fit-content;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 30px;
+  aspect-ratio: 1;
+  border: 1px solid black;
+}
+
+.cell.Empty {
+  background-color: rgb(200, 200, 200);
+}
+
+.cell.I {
+  background-color: rgb(201, 219, 7);
+
+}
+
+.cell.J {
+  background-color: rgb(181, 5, 5);
+
+}
+
+.cell.L {
+  background-color: rgb(100, 8, 213);
+
+}
+
+.cell.O {
+  background-color: rgb(13, 168, 192);
+
+}
+
+.cell.S {
+  background-color: rgb(168, 102, 11);
+
+}
+
+.cell.T {
+  background-color: rgb(6, 230, 92);
+
+}
+
+.cell.Z {
+  background-color: rgb(209, 8, 115);
+
+}
+
