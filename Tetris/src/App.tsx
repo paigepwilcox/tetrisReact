@@ -1,6 +1,6 @@
 import Board from './components/Board';
 import { useTetris } from './hooks/useTetris';
-import './components/types';
+import './types';
 
 function App() {
   const { board, startGame, isPlaying} = useTetris();

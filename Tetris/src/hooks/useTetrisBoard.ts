@@ -1,5 +1,5 @@
 import { useReducer, Dispatch } from "react";
-import { Block, BlockShape, BoardShape, EmptyCell, SHAPES } from "../components/types";
+import { Block, BlockShape, BoardShape, EmptyCell, SHAPES } from "../types";
 
 export const BOARD_HEIGHT = 20;
 export const BOARD_WIDTH = 10;

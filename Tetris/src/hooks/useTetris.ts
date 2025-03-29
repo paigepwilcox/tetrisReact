@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Block, BlockShape, BoardShape, EmptyCell, SHAPES } from '../components/types';
+import { Block, BlockShape, BoardShape, EmptyCell, SHAPES } from '../types';
 import { useInterval } from "./useInterval";
 import { 
     useTetrisBoard, 
