@@ -1,16 +1,19 @@
 import Board from './components/Board';
-import { EmptyCell } from './components/types';
+import { useTetris } from './hooks/useTetris';
 import './components/types';
 
-const board = Array(20)
-  .fill(null)
-  .map(() => Array(12).fill(EmptyCell.Empty));
-
 function App() {
+  const { board, startGame, isPlaying} = useTetris();
+
   return (
       <div className='App'>
         <h1>Tetris!</h1>
         <Board currentBoard={board}/>
+        <div className='controls'>
+          {isPlaying ? null : (
+            <button onClick={startGame}>New Game</button>
+          )}
+        </div>
       </div>
   );
 }
