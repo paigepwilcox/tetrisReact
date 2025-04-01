@@ -1,9 +1,10 @@
 import Board from './components/Board';
+import UpcomingBlocks from './components/UpcomingBlocks';
 import { useTetris } from './hooks/useTetris';
 import './types';
 
 function App() {
-  const { board, startGame, isPlaying, score } = useTetris();
+  const { board, startGame, isPlaying, score, upcomingBlocks } = useTetris();
 
   return (
       <div className='App'>
@@ -11,7 +12,9 @@ function App() {
         <Board currentBoard={board}/>
         <div className='controls'>
           <h2>Score: {score}</h2>
-          {isPlaying ? null : (
+          {isPlaying ? (
+            <UpcomingBlocks upcomingBlocks={upcomingBlocks} />
+          ) : (
             <button onClick={startGame}>New Game</button>
           )}
         </div>
