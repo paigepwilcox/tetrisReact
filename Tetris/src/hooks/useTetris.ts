@@ -5,6 +5,8 @@ import {
     useTetrisBoard, 
     hasCollisions,
     getRandomBlock,
+    BOARD_HEIGHT,
+    getEmptyBoard,
     } from "./useTetrisBoard";
 
 
@@ -19,12 +21,21 @@ export function useTetris() {
     const [ tickSpeed, setTickSpeed ] = useState<TickSpeed | null>(null);
     const [ isCommitting, setIsCommitting ] = useState(false);
     const [ upcomingBlocks, setUpcomingBlocks ] = useState<Block[]>([]);
+    const [ score, setScore ] = useState(0);
 
     const [
         { board, droppingRow, droppingColumn, droppingBlock, droppingShape } , dispatchBoardState,
     ] = useTetrisBoard();
 
     const startGame = useCallback(() => {
+        const startingBlocks= [
+            getRandomBlock(),
+            getRandomBlock(),
+            getRandomBlock(),
+        ];
+        setScore(0);
+        setUpcomingBlocks(startingBlocks);
+        setIsCommitting(false);
         setIsPlaying(true);
         setTickSpeed(TickSpeed.Normal);
         dispatchBoardState({ type: 'start' });
@@ -46,12 +57,32 @@ export function useTetris() {
             droppingColumn
         );
 
+        let numCleared = 0;
+        for (let row = BOARD_HEIGHT - 1; row >= 0; row--) {
+            if (newBoard[row].every((entry) => entry !== EmptyCell.Empty)) {
+                numCleared++;
+                newBoard.splice(row, 1);
+            }
+        };
+
         const newUpcomingBlocks = structuredClone(upcomingBlocks) as Block[];
         const newBlock = newUpcomingBlocks.pop() as Block;
         newUpcomingBlocks.unshift(getRandomBlock());
+        
 
-        setTickSpeed(TickSpeed.Normal);
-        dispatchBoardState({ type: 'commit', newBoard });
+        if (hasCollisions(board, SHAPES[newBlock].shape, 0, 3)) {
+            setIsPlaying(false);
+            setTickSpeed(null);
+        } else {
+            setTickSpeed(TickSpeed.Normal);
+        }
+        setUpcomingBlocks(newUpcomingBlocks);
+        setScore((prevScore) => prevScore + getPoints(numCleared));
+        dispatchBoardState({ 
+            type: 'commit', 
+            newBoard: [...getEmptyBoard(BOARD_HEIGHT - newBoard.length), ...newBoard],
+            newBlock,
+        });
         setIsCommitting(false);
     }, [board, dispatchBoardState, droppingBlock, droppingColumn, droppingRow, droppingShape, upcomingBlocks]);
 
@@ -133,6 +164,16 @@ export function useTetris() {
             if (event.key === 'ArrowDown') {
                 setTickSpeed(TickSpeed.Normal);
             }
+
+            if (event.key === 'ArrowLeft') {
+                isPressingLeft = false;
+                updateMovementInterval();
+            }
+
+            if (event.key === 'ArrowRight') {
+                isPressingRight = false;
+                updateMovementInterval();
+            }
         };
 
         document.addEventListener('keydown', handleKeyDown);
@@ -140,6 +181,7 @@ export function useTetris() {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
+            clearInterval(moveIntervalID);
             setTickSpeed(TickSpeed.Normal);
         };
     }, [dispatchBoardState, isPlaying]);
@@ -159,33 +201,43 @@ export function useTetris() {
         board: renderedBoard,
         startGame,
         isPlaying,
-    }
-
-    function addShapeToBoard(
-        board: BoardShape,
-        droppingBlock: Block,
-        droppingShape: BlockShape,
-        droppingRow: number,
-        droppingColumn: number
-    ) {
-        droppingShape
-            .filter((row) => row.some((isSet) => isSet))
-            .forEach((row: boolean[], rowIndex: number) => {
-                row.forEach((isSet: boolean, colIndex: number) => {
-                    if (isSet) {
-                        board[droppingRow + rowIndex][droppingColumn + colIndex] = droppingBlock;
-                    }
-                });
-                
-            })
-    }
-
-    // return {
-    //     board: renderedBoard,
-    //     startGame,
-    //     isPlaying,
-    // };
-
-    
-
+        score,
+        upcomingBlocks,
+    };
 }
+
+function getPoints(numCleared: number): number {
+    switch (numCleared) {
+        case 0: 
+            return 0;
+        case 1:
+            return 100;
+        case 2: 
+            return 300;
+        case 3: 
+            return 500;
+        case 4:
+            return 800;
+        default:
+            throw new Error('Unexpected number of rows cleared');
+    }
+};
+
+function addShapeToBoard(
+    board: BoardShape,
+    droppingBlock: Block,
+    droppingShape: BlockShape,
+    droppingRow: number,
+    droppingColumn: number
+) {
+    droppingShape
+        .filter((row) => row.some((isSet) => isSet))
+        .forEach((row: boolean[], rowIndex: number) => {
+            row.forEach((isSet: boolean, colIndex: number) => {
+                if (isSet) {
+                    board[droppingRow + rowIndex][droppingColumn + colIndex] = droppingBlock;
+                }
+            });
+            
+        });
+};
