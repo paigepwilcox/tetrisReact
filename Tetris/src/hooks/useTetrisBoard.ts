@@ -37,7 +37,7 @@ export function useTetrisBoard(): [BoardState, Dispatch<Action>] {
 export function getEmptyBoard(height = BOARD_HEIGHT): BoardShape {
     return Array(height)
         .fill(null)
-        .map(() => Array(12).fill(EmptyCell.Empty));
+        .map(() => Array(BOARD_WIDTH).fill(EmptyCell.Empty));
 }
 
 export function hasCollisions(
@@ -98,7 +98,7 @@ type Action = {
 };
 
 function boardReducer(state: BoardState, action: Action): BoardState {
-    let newState = { ...state };
+    const newState = { ...state };
 
     switch (action.type) {
         case 'start':
