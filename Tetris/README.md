@@ -2,6 +2,11 @@
 Strengthening my React muscles by building a Tetris game!
 
 
+TODO:
+styling
+create a development pipeline via github
+deploy
+
 
 
 
