@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlayerForm from "./PlayerForm"
 import { checkScore } from "../hooks/useTetris"
 import { PlayerScore } from "../types";
@@ -12,7 +12,9 @@ function GameOverScreen({ score, onSaveScore }: Props) {
     const [ showPlayerForm, setShowPlayerForm ] = useState(false);
     const [ playerName, setPlayerName ] = useState('');
     
-    setShowPlayerForm(checkScore(score));
+    useEffect(() => {
+        setShowPlayerForm(checkScore(score));
+    }, [score])
 
     const handleChange = (name: string) => {
         setPlayerName(name);
