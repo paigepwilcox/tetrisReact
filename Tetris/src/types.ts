@@ -75,3 +75,10 @@ export const SHAPES: ShapesObj = {
         ],
     },
 };
+
+export interface PlayerScore {
+    name: string;
+    score: number;
+}
+
+export type ScoreBoardData = PlayerScore[];
