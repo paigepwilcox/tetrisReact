@@ -7,8 +7,10 @@
   grid-template-areas: 
     "game title"
     "game controls"
-    "game .";
-  grid-template-columns: repeat(3, 1fr);
+    "game controls";
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: center;
+  margin: auto;
 }
 
 h1 {
@@ -17,7 +19,7 @@ h1 {
 }
 
 .board {
-  border: 2px solid black;
+  border: 10px ridge rgba(245, 57, 57, 0.67);
   user-select: none;
   margin: auto;
   grid-area: game;
@@ -75,6 +77,8 @@ h1 {
 .controls {
   text-align: center;
   grid-area: controls;
+  display: flex;
+  flex-direction: column;
 }
 
 .upcoming {
@@ -86,4 +90,20 @@ h1 {
 
 .cell.hidden {
   visibility: hidden;
+}
+
+div.high-scores ol {
+  justify-items: center;
+}
+
+button.new-game {
+  width: fit-content;
+  border-radius: 20px;
+  margin-top: auto;
+  background: rgba(245, 93, 93, 0.627);
+  align-self: center;
+}
+
+button.new-game:hover {
+  background: rgba(186, 62, 62, 0.707);
 }
