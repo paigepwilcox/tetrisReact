@@ -1,5 +1,5 @@
 :root {
-  background-color: rgb(2, 135, 135);
+  background-color: rgb(0, 0, 0);
 }
 
 .App {
@@ -10,16 +10,28 @@
     "game controls";
   grid-template-columns: repeat(2, 1fr);
   justify-self: center;
+  border: 5px ridge green;
+  border-radius: 20px;
   margin: auto;
+  padding: 20px;
+  max-width: 540px;
+  min-width: fit-content;
 }
 
 h1 {
-  text-align: center;
+  border: green ridge 3px;
+  border-radius: 20px;
+  margin-top: 0px;
+  max-width: 245px;
+  max-height: fit-content;
   grid-area: title;
+  color: rgb(113, 246, 113);
+  text-align: center;
 }
 
 .board {
-  border: 10px ridge rgba(245, 57, 57, 0.67);
+  /* border: 10px ridge rgba(245, 57, 57, 0.67); */
+  border: 10px ridge rgba(101, 214, 66, 0.67);
   user-select: none;
   margin: auto;
   grid-area: game;
@@ -36,49 +48,35 @@ h1 {
 }
 
 .cell.Empty {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(193, 246, 181);
 }
 
 .cell.I {
   background-color: rgb(201, 219, 7);
-
 }
 
 .cell.J {
   background-color: rgb(181, 5, 5);
-
 }
 
 .cell.L {
   background-color: rgb(100, 8, 213);
-
 }
 
 .cell.O {
   background-color: rgb(13, 168, 192);
-
 }
 
 .cell.S {
   background-color: rgb(168, 102, 11);
-
 }
 
 .cell.T {
   background-color: rgb(6, 230, 92);
-
 }
 
 .cell.Z {
   background-color: rgb(209, 8, 115);
-
-}
-
-.controls {
-  text-align: center;
-  grid-area: controls;
-  display: flex;
-  flex-direction: column;
 }
 
 .upcoming {
@@ -92,18 +90,72 @@ h1 {
   visibility: hidden;
 }
 
-div.high-scores ol {
-  justify-items: center;
+.controls {
+  grid-area: controls;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}
+
+.high-scores {
+  border: green ridge 3px;
+  border-radius: 20px;
+  padding: 2px 10px 30px;
+  background: black;
+  color: rgb(113, 246, 113);
+  text-align: left;
+  
+}
+
+.high-scores ol {
+  padding-left: 20px;
+}
+
+.current-score {
+  border: green ridge 3px;
+  border-radius: 20px;
+  margin-top: auto;
+  padding: 10px 10px 30px;
+  background: black;
+  color: rgb(113, 246, 113);
+  text-align: left;
 }
 
 button.new-game {
   width: fit-content;
+  border: rgba(0, 128, 0, 0.783) groove 5px;
   border-radius: 20px;
-  margin-top: auto;
-  background: rgba(245, 93, 93, 0.627);
+  background: rgb(86, 255, 60);
   align-self: center;
+  color: rgb(3, 66, 2);
+  font-size: medium;
+  transform: scale(1.2);
 }
 
 button.new-game:hover {
-  background: rgba(186, 62, 62, 0.707);
+  border: rgb(250, 116, 116) groove 5px;
+  background: rgba(245, 57, 57, 0.67);
+  color: white;
+  /* box-shadow: 5px 5px rgba(245, 57, 57, 0.67); */
+  transform: scale(1.5);
+}
+
+.player-form form {
+  border: rgb(111, 244, 111) ridge 5px;
+  border-radius: 20px;
+  padding: 10px;
+  background: rgba(142, 226, 142, 0.826);
+  color: rgb(29, 29, 29);
+  text-align: center;
+}
+
+.player-form button {
+  margin-top: 10px;
+  background: rgb(8, 242, 0);
+}
+
+.player-form button:hover {
+  border: green ridge 3px;
+  background: rgb(120, 249, 148);
+  transform: scale(1.5);
 }
