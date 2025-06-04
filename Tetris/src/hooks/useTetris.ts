@@ -24,18 +24,6 @@ export const getHighScores = (): ScoreBoardData => {
     return JSON.parse(storedData) as ScoreBoardData;
 }
 
-// export function saveHighScore(playerScore: PlayerScore): ScoreBoardData {
-//     const existingScores = getHighScores();
-
-//     existingScores.push(playerScore);
-//     const sortedScores = existingScores.sort((a,b) => b.score - a.score);
-//     const newScores = sortedScores.slice(0, MAX_HIGH_SCORES);
-
-//     localStorage.setItem(STORAGE_KEY, JSON.stringify(newScores));
-    
-//     return newScores;
-// }
-
 export function checkScore(score: number): boolean {
     const existingScores = getHighScores();
     if (existingScores.length < MAX_HIGH_SCORES) {
