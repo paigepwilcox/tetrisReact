@@ -8,7 +8,7 @@ interface Props {
 const PlayerForm = ({ playerName, handleChange, handleSubmit }: Props) => {
 
     return (
-        <div>
+        <div className="player-form">
             <form onSubmit={handleSubmit} >
                 <label htmlFor="name">Enter your name:</label>
                 <input 
