@@ -10,17 +10,17 @@ function App() {
 
   return (
       <div className='App'>
-        <h1>Tetris!</h1>
+        <h1>Tetris</h1>
         <Board currentBoard={board}/>
         <div className='controls'>
           <HighScores scores={highScores} />
-          <h2>Current Score: {score}</h2>
+          <h3 className='current-score'>Current Score: {score}</h3>
+          {gameOver && <GameOverScreen score={score} onSaveScore={saveHighScore}/> }
           {isPlaying ? (
             <UpcomingBlocks upcomingBlocks={upcomingBlocks} />
           ) : (
-              <button onClick={startGame}>New Game</button>
+              <button className='new-game' onClick={startGame}>New Game</button>
           )}
-          {gameOver && <GameOverScreen score={score} onSaveScore={saveHighScore}/> }
         </div>
       </div>
   );
