@@ -1,6 +1,10 @@
 # TETRIS
 Strengthening my React muscles by building a Tetris game!
 
+To Run:
+ npm run dev                                                     
+
+
 
 TODO:
 styling
