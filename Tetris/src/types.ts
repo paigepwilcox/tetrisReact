@@ -69,7 +69,7 @@ export const SHAPES: ShapesObj = {
     },
     Z: {
         shape: [
-            [false, false, false, false],
+            [false, false, false],
             [true, true, false],
             [false, true, true],
         ],
