@@ -7,7 +7,7 @@ interface Props {
 
 function Board({ currentBoard }: Props) {
     return (
-        <div className="board">
+        <div className="board" data-testid="board">
             {currentBoard.map((row, rowIndex) => (
                 <div className="row" key={ `${rowIndex}` }>
                     {row.map((cell, colIndex) => (
