@@ -27,7 +27,8 @@ describe('Board', () => {
         // const emptyBoard = Array(20)
         //     .fill(null)
         //     .map(() => Array(10).fill(null));
-
+        
+        expect(testValue).toMatchObject(emptyBoard);
         expect(testValue).toHaveLength(emptyBoard.length);
     });
 });
