@@ -30,7 +30,6 @@ h1 {
 }
 
 .board {
-  /* border: 10px ridge rgba(245, 57, 57, 0.67); */
   border: 10px ridge rgba(101, 214, 66, 0.67);
   user-select: none;
   margin: auto;
