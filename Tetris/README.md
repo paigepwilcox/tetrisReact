@@ -12,6 +12,18 @@ create a development pipeline via github
 deploy
 
 
+# Lessons Leanred 
+// const [ highScores, setHighScores ] = useState<ScoreBoardData>([]);
+
+    // /* The below causes an infinite rerendering loop since it is in the body of the component body, outside of hooks or event handlers.
+
+    // setHighScores(getHighScores());
+    //  */
+
+    // /* The Fix */
+    // useEffect(() => {
+    //     setHighScores(getHighScores());
+    // }, []); // dont forget dependency array means this runs once on render
 
 
 
