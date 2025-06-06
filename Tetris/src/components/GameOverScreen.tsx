@@ -43,7 +43,6 @@ function GameOverScreen({ score, onSaveScore }: Props) {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 ></PlayerForm> }
-            
         </div>
     );
 }
