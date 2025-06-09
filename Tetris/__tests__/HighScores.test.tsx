@@ -1,14 +1,4 @@
 import { getHighScores } from '../src/hooks/useTetris';
-/*
-    2. make sure the names and scores match whats in the json
-
-    3. all the names are a string
-
-    4. all the scores are numbers
-
-    4. scores are sorted by descending 
-*/
-
 
 describe('HighScores', () => {
     it("All the names have the type string", () => {
@@ -23,6 +13,13 @@ describe('HighScores', () => {
         const testValue = scores.filter(score => typeof score === "number");
 
         expect(testValue).toEqual(scores);
+    })
+
+    it("Scores are sorted in descending order", () => {
+        const testValue = Object.values(getHighScores());
+        const sortedScores = testValue.sort((a,b) => b.score - a.score);
+
+        expect(testValue).toEqual(sortedScores);
     })
 })
 
