@@ -2,6 +2,7 @@
   "name": "tetris",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://paigepwilcox.github.io/tetris",
   "type": "module",
   "scripts": {
     "dev": "vite",
